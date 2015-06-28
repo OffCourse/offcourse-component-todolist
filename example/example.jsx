@@ -1,44 +1,55 @@
 import React from "react";
-import TodolistItem from "../src/index.jsx";
-
+import Todolist from "../src/index.jsx";
 class Example extends React.Component {
 
   constructor(props){
     super(props);
 
-    let item = {
-      id: 1,
-      title: "Foo Bar Baz Foo Bar Baz Bar Bar Baz",
-      complete: false,
-      highlight: false
-    };
+    let collection = [
+      {
+        id: 0,
+        title: "Foo Bar"
+      },
+      {
+        id: 1,
+        title: "Foo Bar",
+        complete: true
+      },
+      {
+        id: 2,
+        title: "Foo Bar"
+      }
+    ];
 
-    this.state = { item };
+    this.state = { collection };
   }
-  handleHover(){
-    let { item } = this.state;
-    item.highlight = !item.highlight;
-    this.setState({item});
+  handleHover(id){
+    let { collection } = this.state;
+    collection[id].highlight = !collection[id].highlight;
+    this.setState({collection});
   };
-  handleClick(origin, selection){
-    let { item } = this.state;
-    if(origin === "checkbox"){
-      item.complete = !item.complete;
-      this.setState({item});
-    } else {
-      this.setState({selection});
-    }
+
+  handleTitleClick({id}){
+    let { collection } = this.state;
+    let selection = collection[id];
+    this.setState({selection});
+  };
+
+  handleCheckboxClick(id){
+    let { collection } = this.state;
+    collection[id].complete = !collection[id].complete;
+    this.setState({collection});
   };
 
   render() {
-    let { item, selection } = this.state;
+    let { collection, selection } = this.state;
     return (
       <section>
-        <TodolistItem
-          handleTitleClick={ this.handleClick.bind(this, "title") }
-          handleCheckboxClick={ this.handleClick.bind(this, "checkbox") }
+        <Todolist
+          handleTitleClick={ this.handleTitleClick.bind(this) }
+          handleCheckboxClick={ this.handleCheckboxClick.bind(this) }
           handleHover={ this.handleHover.bind(this) }
-          item={ item }/>
+          collection={ collection }/>
           <p>Selection: { JSON.stringify(selection) || "click title" }</p>
       </section>
     );
