@@ -1,6 +1,6 @@
 {
   "name": "offcourse-component-todolist",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "A react component for the offcourse todolist item",
   "main": "lib/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.1.2",
-    "offcourse-component-todolist-item": "0.0.2",
+    "offcourse-component-todolist-item": "0.0.5",
     "ramda": "^0.15.1",
     "react": "^0.13.3"
   },

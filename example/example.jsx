@@ -1,5 +1,6 @@
 import React from "react";
 import Todolist from "../src/index.jsx";
+
 class Example extends React.Component {
 
   constructor(props){
@@ -42,13 +43,15 @@ class Example extends React.Component {
   };
 
   render() {
-    let { collection, selection } = this.state;
+    const { collection, selection } = this.state;
+    const parentId = "abc";
     return (
       <section>
         <Todolist
           handleTitleClick={ this.handleTitleClick.bind(this) }
           handleCheckboxClick={ this.handleCheckboxClick.bind(this) }
           handleHover={ this.handleHover.bind(this) }
+          parentId={ parentId }
           collection={ collection }/>
           <p>Selection: { JSON.stringify(selection) || "click title" }</p>
       </section>

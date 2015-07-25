@@ -1,9 +1,24 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import classnames from "classnames";
 import R from "ramda";
 import TodolistItem from "offcourse-component-todolist-item";
 
 class Todolist extends React.Component {
+
+  static propTypes = {
+    handleHover: PropTypes.func,
+    handleTitleClick: PropTypes.func,
+    handleCheckboxClick: PropTypes.func,
+    parentId: PropTypes.string,
+    collection: PropTypes.array.isRequired
+  };
+
+  static defaultProps = {
+    handleCheckboxClick: () =>{},
+    handleTitleClick: () => {},
+    handleHover: () => {}
+  };
+
   constructor(props){
     super(props);
     this.name = "todolist";
@@ -16,13 +31,14 @@ class Todolist extends React.Component {
   }
 
   render() {
-    let { collection, handleHover, handleTitleClick, handleCheckboxClick } = this.props;
+    let { parentId, collection, handleHover, handleTitleClick, handleCheckboxClick } = this.props;
     let items = R.mapIndexed((item, index) => {
       return (
         <TodolistItem key={ index } item={ item }
-        handleHover={ handleHover }
-        handleTitleClick={ handleTitleClick }
-        handleCheckboxClick={ handleCheckboxClick }/>
+          parentId={ parentId }
+          handleHover={ handleHover }
+          handleTitleClick={ handleTitleClick }
+          handleCheckboxClick={ handleCheckboxClick }/>
       );
     }, collection);
 
@@ -34,18 +50,4 @@ class Todolist extends React.Component {
   }
 }
 
-Todolist.defaultProps = {
-  handleCheckboxClick: () =>{},
-  handleTitleClick: () => {},
-  handleHover: () => {}
-};
-
-Todolist.propTypes = {
-  handleHover: React.PropTypes.func,
-  handleTitleClick: React.PropTypes.func,
-  handleCheckboxClick: React.PropTypes.func,
-  collection: React.PropTypes.array.isRequired
-};
-
 export default Todolist;
-/*eslint no-unused-vars:0 */
