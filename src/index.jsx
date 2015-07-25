@@ -9,7 +9,6 @@ class Todolist extends React.Component {
     handleHover: PropTypes.func,
     handleTitleClick: PropTypes.func,
     handleCheckboxClick: PropTypes.func,
-    parentId: PropTypes.string,
     collection: PropTypes.array.isRequired
   };
 
@@ -32,15 +31,12 @@ class Todolist extends React.Component {
 
   render() {
     let { parentId, collection, handleHover, handleTitleClick, handleCheckboxClick } = this.props;
-    let items = R.mapIndexed((item, index) => {
-      return (
-        <TodolistItem key={ index } item={ item }
-          parentId={ parentId }
-          handleHover={ handleHover }
-          handleTitleClick={ handleTitleClick }
-          handleCheckboxClick={ handleCheckboxClick }/>
-      );
-    }, collection);
+    let items = R.mapIndexed((item, index) => (
+      <TodolistItem key={ index } item={ item }
+        handleHover={ handleHover }
+        handleTitleClick={ handleTitleClick }
+        handleCheckboxClick={ handleCheckboxClick }/>
+    ), collection);
 
     return (
       <ul className={ this.classes() }>
