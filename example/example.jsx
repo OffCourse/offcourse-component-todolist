@@ -24,19 +24,20 @@ class Example extends React.Component {
 
     this.state = { collection };
   }
-  handleHover(id){
+  handleHover({id}){
     let { collection } = this.state;
     collection[id].highlight = !collection[id].highlight;
     this.setState({collection});
   };
 
-  handleTitleClick({id}){
+  handleTitleClick({id, parentId}){
     let { collection } = this.state;
     let selection = collection[id];
+    selection.parentId = parentId;
     this.setState({selection});
   };
 
-  handleCheckboxClick(id){
+  handleCheckboxClick({id}){
     let { collection } = this.state;
     collection[id].complete = !collection[id].complete;
     this.setState({collection});

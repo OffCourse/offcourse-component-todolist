@@ -42,7 +42,7 @@ describe "Todolist Item Component", ->
   describe "with parent id", ->
     Given ->
       @spy.reset()
-      @parentId = 1
+      @parentId = "1"
     When  -> 
       @subject  = renderElement @Component,
         { @collection, @parentId, @handleHover, @handleCheckboxClick, @handleTitleClick }
