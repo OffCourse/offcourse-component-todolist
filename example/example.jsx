@@ -13,31 +13,30 @@ class Example extends React.Component {
       },
       {
         id: 1,
-        title: "Foo Bar",
-        complete: true
+        title: "Foo Bar"
       },
       {
         id: 2,
-        title: "Foo Bar"
+        title: "Foo Bar",
+        complete: true
       }
     ];
 
     this.state = { collection };
   }
-  handleHover({id}){
+    handleHover(id){
     let { collection } = this.state;
     collection[id].highlight = !collection[id].highlight;
     this.setState({collection});
   };
 
-  handleTitleClick({id, parentId}){
+  handleTitleClick(id){
     let { collection } = this.state;
     let selection = collection[id];
-    selection.parentId = parentId;
     this.setState({selection});
   };
 
-  handleCheckboxClick({id}){
+  handleCheckboxClick(id){
     let { collection } = this.state;
     collection[id].complete = !collection[id].complete;
     this.setState({collection});

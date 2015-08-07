@@ -30,7 +30,7 @@ class Todolist extends React.Component {
   }
 
   render() {
-    let { parentId, collection, handleHover, handleTitleClick, handleCheckboxClick } = this.props;
+    let { collection, handleHover, handleTitleClick, handleCheckboxClick } = this.props;
     let items = R.mapIndexed((item, index) => (
       <TodolistItem key={ index } item={ item }
         handleHover={ handleHover }
